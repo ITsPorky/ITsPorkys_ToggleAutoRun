@@ -1,0 +1,12 @@
+function on_mcm_load()
+	op = { 
+    id = "tar",
+    sh = true,
+    gr = {
+			{id = "toggleAutoRunTitle", type = "slide", link = "ui_options_slider_player", text = "ui_mcm_tar_title", size = {512,50}, spacing = 20},
+			{id = "toggleAutoRunEnabled", type = "check", val = 1, def = true},
+			{id = "toggleAutoRunKey", type = "key_bind", val = 2, def = false},
+			}
+		}
+	return op
+end
