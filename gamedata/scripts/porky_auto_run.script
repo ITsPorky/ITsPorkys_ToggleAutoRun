@@ -1,0 +1,138 @@
+-------------------------------------------------------------------------------------------------------
+--  _____ _______  _____           _          
+-- |_   _|__   __||  __ \         | |         
+--   | |    | |___| |__) |__  _ __| | ___   _ 
+--   | |    | / __|  ___/ _ \| '__| |/ / | | |
+--  _| |_   | \__ \ |  | (_) | |  |   <| |_| |
+-- |_____|  |_|___/_|   \___/|_|  |_|\_\\__, |
+--                                       __/ |
+--                                      |___/ 
+-------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------
+-- Variables
+-------------------------------------------------------------------------------------------------------
+-- Auto Run flags
+local isRunEnabled = false
+local isSprintEnabled = false
+local enabledMsg = "[ ITsPorkys Auto Run/Walk Addon ] - AutoRunWalk is enabled..."
+
+-- MCM variables
+local isAddonEnabled = ui_mcm.get("toggle_auto_run/toggleAutoRunEnabled")
+local autoRunKeyBind = ui_mcm.get("toggle_auto_run/toggleAutoRunToggleKey")
+
+-------------------------------------------------------------------------------------------------------
+-- Callbacks
+-------------------------------------------------------------------------------------------------------
+
+function on_key_press(key)
+
+  -- Using MCM Check for Single Tap or Double Tap
+  -- if(key == DIK_keys.DIK_CAPITAL) then
+  --   -- Check for Single Tap
+  --   ui_mcm.simple_press("auto_run_toggled_mcm", key, functor)
+  --   -- Check for doubletap of key
+  --   ui_mcm.double_tap("auto_sprint_toggled_mcm", key, false)
+
+  --   -- Toggle Auto-Run/Walk
+  --   if(isRunEnabled) then
+  --     -- Stop Auto-Run
+  --     isRunEnabled = false
+  --     news_manager.send_tip(db.actor, "[ ITsPorkys Auto Run/Walk Addon ] - Auto-Walk is disabled...")
+  --     printf(enabledMsg)
+  --   else
+  --     -- Start Auto-Walk
+  --     isRunEnabled = true
+  --     news_manager.send_tip(db.actor, "[ ITsPorkys Auto Run/Walk Addon ] - Auto-Walk is enabled...")
+  --     printf(enabledMsg)
+  --   end
+
+
+  -- end
+
+  -- Check if toggle WALK key pressed
+  if(key == DIK_keys.DIK_CAPITAL) then
+    -- Toggle Auto-Run/Walk
+    if(isRunEnabled) then
+      -- Stop Auto-Run
+      isRunEnabled = false
+      news_manager.send_tip(db.actor, "[ ITsPorkys Auto Run/Walk Addon ] - Auto-Walk is disabled...")
+      printf(enabledMsg)
+    else
+      -- Start Auto-Walk
+      isRunEnabled = true
+      news_manager.send_tip(db.actor, "[ ITsPorkys Auto Run/Walk Addon ] - Auto-Walk is enabled...")
+      printf(enabledMsg)
+    end
+  end
+
+  -- Check if toggle WALK key pressed
+  if(key == DIK_keys.DIK_8) then
+    -- Toggle Auto-Run/Walk
+    if(isSprintEnabled) then
+      -- Stop Auto-Run
+      isSprintEnabled = false
+      news_manager.send_tip(db.actor, "[ ITsPorkys Auto Run/Walk Addon ] - Auto-Run is disabled...")
+      printf(enabledMsg)
+    else
+      -- Start Auto-Walk
+      isSprintEnabled = true
+      news_manager.send_tip(db.actor, "[ ITsPorkys Auto Run/Walk Addon ] - Auto-Run is enabled...")
+      printf(enabledMsg)
+    end
+  end
+
+  -- Check for toggle sprint
+  -- if(key == DIK_keys.DIK_SHIFT) then
+  --   if(toggleSprint) then
+  --     -- Stop sprint
+  --     toggleSprint = false
+  --     news_manager.send_tip(db.actor, "Sprint Off")
+  --     printf("Sprint Off")
+  --   else
+  --     -- Start sprint
+  --     toggleSprint = true
+  --     news_manager.send_tip(db.actor, "Sprint On")
+  --     printf("Sprint On")
+  --   end
+  -- end
+
+  -- Disable Auto Run if forward or backward movement keys (W and S) is pressed
+  if(key == DIK_keys.DIK_W or
+   key == DIK_keys.DIK_S) then
+    if(isRunEnabled or isSprintEnabled) then
+      isRunEnabled = false
+      isSprintEnabled = false
+    end
+  end
+end
+
+-- Check for Auto-Run/Walk on Actor update
+function actor_on_update()
+  -- Walk
+  if(isRunEnabled) then
+    level.hold_action(bind_to_dik(key_bindings.kFWD))
+  end
+  -- Sprint
+  if(isSprintEnabled) then
+    level.hold_action(bind_to_dik(key_bindings.kFWD))
+    level.hold_action(DIK_keys.DIK_LSHIFT)
+  end
+end
+
+-------------------------------------------------------------------------------------------------------
+-- Main Callbacks
+-------------------------------------------------------------------------------------------------------
+
+-- Function runs when actor is loaded into scene
+function actor_on_first_update()
+  -- news_manager.send_tip(db.actor, enabledMsg, nil, nil, 30000)
+  printf(enabledMsg)
+end
+
+-- Main game loop script to register callbacks
+function on_game_start()
+  RegisterScriptCallback("on_key_press", on_key_press)
+  RegisterScriptCallback("actor_on_first_update", actor_on_first_update)
+  RegisterScriptCallback("actor_on_update", actor_on_update)
+end
