@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<string_table>
+	<string id="ui_mcm_menu_porky_tar">
+		<text>Переключить автозапуск</text>
+	</string>
+	<string id="ui_mcm_porky_tar_toggleAutoRunTitle">
+		<text>TAR — переключить автоматический запуск</text>
+	</string>
+	<string id="ui_mcm_porky_tar_toggleAutoRunEnabled">
+		<text>Включить TAR — переключить автоматический запуск</text>
+	</string>
+	<string id="ui_mcm_porky_tar_toggleAutoRunEnabled_desc">
+		<text>Включает функцию «Переключение автоматического запуска», которая позволяет игроку использовать назначенную ему комбинацию клавиш для переключения автоматического запуска и автоматического спринта.</text>
+	</string>
+	<string id="ui_mcm_porky_tar_toggleAutoRunKey">
+		<text>Привязка клавиш для TAR — переключить автоматический запуск</text>
+	</string>
+	<string id="ui_mcm_porky_tar_toggleAutoRunKey_desc">
+		<text>Введите комбинацию клавиш, которую вы хотите использовать для переключения автоматического запуска.</text>
+	</string>
+</string_table>

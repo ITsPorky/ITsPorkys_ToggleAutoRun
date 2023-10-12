@@ -1,5 +1,5 @@
 --
--- ToggleAutoRun v1.0.1
+-- ToggleAutoRun v1.1.2
 -- Last modified: 12.10.2023 (dd.mm.yyyy)
 -- https://github.com/ITsPorky/ITsPorkys_ToggleAutoRun-v0.1
 --
@@ -22,7 +22,7 @@ function check_for_movement_input(key)
     if(isRunEnabled or isSprintEnabled) then
       isRunEnabled = false
       isSprintEnabled = false
-      news_manager.send_tip(db.actor, "[ " ..key.. " ]" .. " was pressed, cancelling Auto Run...")
+      -- news_manager.send_tip(db.actor, "[ " ..key.. " ]" .. " was pressed, cancelling Auto Run...")
       printf("[ " ..key.. " ]" .. " was pressed, cancelling Auto Run...")
     end
   end
@@ -33,12 +33,12 @@ function toggle_auto_run()
   if(isRunEnabled) then
     -- Stop Auto-Run
     isRunEnabled = false
-    news_manager.send_tip(db.actor, "[ ITsPorkys Auto Run Addon ] - Auto-Run is disabled...")
+    -- news_manager.send_tip(db.actor, "[ ITsPorkys Auto Run Addon ] - Auto-Run is disabled...")
     printf("[ ITsPorkys Auto Run Addon ] - Auto-Run is disabled...")
   else
     -- Start Auto-Run
     isRunEnabled = true
-    news_manager.send_tip(db.actor, "[ ITsPorkys Auto Run Addon ] - Auto-Run is enabled...")
+    -- news_manager.send_tip(db.actor, "[ ITsPorkys Auto Run Addon ] - Auto-Run is enabled...")
     printf("[ ITsPorkys Auto Run Addon ] - Auto-Run is enabled...")
   end
 end
@@ -48,12 +48,12 @@ function toggle_auto_sprint()
   if(isSprintEnabled) then
     -- Stop Auto-Run
     isSprintEnabled = false
-    news_manager.send_tip(db.actor, "[ ITsPorkys Auto Run Addon ] - Auto-Sprint is disabled...")
+    -- news_manager.send_tip(db.actor, "[ ITsPorkys Auto Run Addon ] - Auto-Sprint is disabled...")
     printf("[ ITsPorkys Auto Run Addon ] - Auto-Sprint is disabled...")
   else
     -- Start Auto-Run
     isSprintEnabled = true
-    news_manager.send_tip(db.actor, "[ ITsPorkys Auto Run Addon ] - Auto-Sprint is enabled...")
+    -- news_manager.send_tip(db.actor, "[ ITsPorkys Auto Run Addon ] - Auto-Sprint is enabled...")
     printf("[ ITsPorkys Auto Run Addon ] - Auto-Sprint is enabled...")
   end
 end

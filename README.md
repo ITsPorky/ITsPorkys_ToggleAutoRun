@@ -25,6 +25,7 @@ An addon for S.T.A.L.K.E.R Anomaly that adds the ability to toggle auto run and 
   - None
   - Shift key
   - Alt key
+- MCM menu translated to English and Russian.
 
 ## Mod Configuration Menu(MCM) Integration
 
