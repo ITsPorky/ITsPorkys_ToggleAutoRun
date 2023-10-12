@@ -1,12 +1,41 @@
+-------------------------------------------------------------------------------------------------------
+-- Variables
+-------------------------------------------------------------------------------------------------------
+
+TOGGLE_AUTO_RUN_ENABLED = true
+TOGGLE_AUTO_RUN_KEY = DIK_keys.DIK_CAPITAL
+
+local mcm_keybinds = ui_mcm and ui_mcm.key_hold
+
+-------------------------------------------------------------------------------------------------------
+-- MCM On Load
+-------------------------------------------------------------------------------------------------------
+
 function on_mcm_load()
 	op = { 
     id = "tar",
     sh = true,
     gr = {
-			{id = "toggleAutoRunTitle", type = "slide", link = "ui_options_slider_player", text = "ui_mcm_tar_title", size = {512,50}, spacing = 20},
-			{id = "toggleAutoRunEnabled", type = "check", val = 1, def = true},
-			{id = "toggleAutoRunKey", type = "key_bind", val = 2, def = false},
+			{id = "toggleAutoRunTitle", type = "slide", link = "ui_options_slider_player", text = "TAR - Toggle Auto Run", size = {512,50}, spacing = 20},
+			{id = "toggleAutoRunEnabled", type = "check", val = 1, def = TOGGLE_AUTO_RUN_ENABLED},
+			{id = "toggleAutoRunKey", type = "key_bind", val = 2, def = TOGGLE_AUTO_RUN_KEY},
 			}
 		}
 	return op
+end
+
+-------------------------------------------------------------------------------------------------------
+-- Main Callbacks
+-------------------------------------------------------------------------------------------------------
+
+function on_option_change(mcm)
+  if mcm then
+    TOGGLE_AUTO_RUN_ENABLED = ui_mcm.get("tar/toggleAutoRunEnabled")
+    TOGGLE_AUTO_RUN_KEY = ui_mcm.get("tar/toggleAutoRunKey") or TOGGLE_AUTO_RUN_KEY
+  end
+end
+
+function on_game_start()
+	RegisterScriptCallback("on_option_change", on_option_change)
+	on_option_change(mcm_keybinds)
 end
