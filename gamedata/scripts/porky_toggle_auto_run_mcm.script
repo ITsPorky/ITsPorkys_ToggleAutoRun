@@ -27,8 +27,8 @@ function on_mcm_load()
 			{id = "toggleAutoRunTitle", type = "slide", link = "ui_options_slider_player", text = "TAR - Toggle Auto Run", size = {512,50}, spacing = 20},
 			{id = "toggleAutoRunEnabled", type = "check", val = 1, def = TOGGLE_AUTO_RUN_ENABLED},
 			{id = "toggleAutoRunKey", type = "key_bind", val = 2, def = TOGGLE_AUTO_RUN_KEY},
-	    {id = "toggleAutoRunKeyModifier", type = ui_mcm.kb_mod_radio, val = 2, def = 0, hint = "mcm_kb_modifier" , content= { {0,"mcm_kb_mod_none"} , {1,"mcm_kb_mod_shift"} ,{3,"mcm_kb_mod_alt"}}},
-			{id = "toggleAutoRunKeyMode", type = ui_mcm.kb_mod_radio, val = 2, def = 0, hint = "mcm_kb_mode" , content= { {0,"mcm_kb_mode_press"} , {1,"mcm_kb_mode_dtap"} , {2,"mcm_kb_mode_hold"}}},
+	    {id = "toggleAutoRunKeyModifier", type = ui_mcm.kb_mod_radio, val = 2, def = TOGGLE_AUTO_RUN_MODIFIER, hint = "mcm_kb_modifier" , content= { {0,"mcm_kb_mod_none"} , {1,"mcm_kb_mod_shift"} ,{3,"mcm_kb_mod_alt"}}},
+			{id = "toggleAutoRunKeyMode", type = ui_mcm.kb_mod_radio, val = 2, def = TOGGLE_AUTO_RUN_MODE, hint = "mcm_kb_mode" , content= { {0,"mcm_kb_mode_press"} , {1,"mcm_kb_mode_dtap"} , {2,"mcm_kb_mode_hold"}}},
 			}
 		}
 	return op
