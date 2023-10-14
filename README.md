@@ -1,5 +1,7 @@
 # ITsPorkys Toggle Auto Run-v1.1.2
 
+**IMPORTANT NOTE: This addon requires [Mod Configuration Manager(MCM)](https://github.com/RAX-Anomaly/Anomaly-Mod-Configuration-Menu) to work**
+
 An addon for S.T.A.L.K.E.R Anomaly that adds the ability to toggle auto run and let your Stalker run through the Zone hitting anything in their path.
 
 ## Contents
