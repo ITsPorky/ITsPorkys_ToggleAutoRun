@@ -33,7 +33,7 @@ Hi Stalkers, just thought I'd give some of my recommendations for using/configur
 
 This addon allows you to toggle "Auto-Run" and "Auto-Sprint". This can be bound to the same key or seperate keys. This is achieved by making use of the Mod Configuration Manager(MCM), it allows you to select your toggle options for the bound key(s). The default configuration for this mod (The way I like to use it) is with the `[CAPS LOCK]` key for both "Auto-Run" and "Auto-Sprint", "Auto-Run" is toggled by single tapping `[CAPS LOCK]`, "Auto-Sprint" is toggled by double tapping `[CAPS LOCK]`.
 
-I would recommend not using the "Hold key" MCM option if you are using the same key, as it is a little janky/broken (been trying to fix this but not sure I can).
+I have removed the "hold key" option from MCM as it is a little janky/broken when the same keybind is used (been trying to fix this but not sure I can).
 
 ## Features
 
