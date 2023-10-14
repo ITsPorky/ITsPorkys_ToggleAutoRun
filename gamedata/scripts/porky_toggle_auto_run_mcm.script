@@ -62,5 +62,5 @@ end
 
 function on_game_start()
 	RegisterScriptCallback("on_option_change", on_option_change)
-	on_option_change(mcm_keybinds)
+	on_option_change(MCM_KEYBINDS)
 end
