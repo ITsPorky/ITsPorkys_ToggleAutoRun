@@ -90,17 +90,17 @@ function on_key_press(key)
   check_for_movement_input(key) -- Check for inputs on movement keys (W and S), then Disable Auto Run
 end
 
-function on_key_hold(key)
-  if porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_ENABLED then -- Check if addon is Enabled/Disabled in MCM
-    -- MCM Hold Press
-    if porky_toggle_auto_run_mcm.MCM_KEYBINDS and (key == porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_KEY) and (porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_MODE == 2) and ui_mcm.get_mod_key(porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_MODIFIER) and ui_mcm.key_hold("porky_tar", key, 1) then
-      toggle_auto_run()
-    end	
-    if porky_toggle_auto_run_mcm.MCM_KEYBINDS and (key == porky_toggle_auto_run_mcm.TOGGLE_AUTO_SPRINT_KEY) and (porky_toggle_auto_run_mcm.TOGGLE_AUTO_SPRINT_MODE == 2) and ui_mcm.get_mod_key(porky_toggle_auto_run_mcm.TOGGLE_AUTO_SPRINT_MODIFIER) and ui_mcm.key_hold("porky_tar", key, 1) then
-      toggle_auto_sprint()
-    end	
-  end
-end
+-- function on_key_hold(key)
+--   if porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_ENABLED then -- Check if addon is Enabled/Disabled in MCM
+--     -- MCM Hold Press
+--     if porky_toggle_auto_run_mcm.MCM_KEYBINDS and (key == porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_KEY) and (porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_MODE == 2) and ui_mcm.get_mod_key(porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_MODIFIER) and ui_mcm.key_hold("porky_tar", key, 1) then
+--       toggle_auto_run()
+--     end	
+--     if porky_toggle_auto_run_mcm.MCM_KEYBINDS and (key == porky_toggle_auto_run_mcm.TOGGLE_AUTO_SPRINT_KEY) and (porky_toggle_auto_run_mcm.TOGGLE_AUTO_SPRINT_MODE == 2) and ui_mcm.get_mod_key(porky_toggle_auto_run_mcm.TOGGLE_AUTO_SPRINT_MODIFIER) and ui_mcm.key_hold("porky_tar", key, 1) then
+--       toggle_auto_sprint()
+--     end	
+--   end
+-- end
 
 function actor_on_update() -- Check for Auto-Run/Walk on Actor update
   -- Run
