@@ -1,4 +1,4 @@
-# ITsPorkys Toggle Auto Run-v1.1.2
+# ITsPorkys Toggle Auto Run (v1.0.0)
 
 **IMPORTANT NOTE: This addon requires [Mod Configuration Manager(MCM)](https://github.com/RAX-Anomaly/Anomaly-Mod-Configuration-Menu) to work**
 
@@ -6,7 +6,7 @@ An addon for S.T.A.L.K.E.R Anomaly that adds the ability to toggle auto run and 
 
 ## Contents
 
-- [ITsPorkys Toggle Auto Run-v1.1.2](#itsporkys-toggle-auto-run-v112)
+- [ITsPorkys Toggle Auto Run (v1.0.0)](#itsporkys-toggle-auto-run-v100)
   - [Contents](#contents)
   - [How To Install](#how-to-install)
     - [Using Mod Organiser 2(MO2)](#using-mod-organiser-2mo2)
