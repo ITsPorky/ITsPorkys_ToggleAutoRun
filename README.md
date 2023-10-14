@@ -31,11 +31,11 @@ To install the addon manually, you will need to unzip the `ITsPorkys_ToggleAutoR
 
 ## Addon Configuration Instructions and Recommendations
 
-Hi Stalkers, just thought I'd give some of my recommendations for using/configuring this Toggle Auto Run addon.
+Hi Stalkers, just thought I'd give you an explanation for using/configuring this Toggle Auto Run addon.
 
-This addon allows you to toggle "Auto-Run" and "Auto-Sprint". This can be bound to the same key or seperate keys. This is achieved by making use of the Mod Configuration Manager(MCM), it allows you to select your toggle options for the bound key(s). The default configuration for this mod (The way I like to use it) is with the `[CAPS LOCK]` key for both "Auto-Run" and "Auto-Sprint", "Auto-Run" is toggled by single tapping `[CAPS LOCK]`, "Auto-Sprint" is toggled by double tapping `[CAPS LOCK]`.
+The default configuration for this mod (The way I like to use it) is with the `[CAPS LOCK]` key for both "Auto-Run" and "Auto-Sprint", "Auto-Run" is toggled by single tapping `[CAPS LOCK]`, "Auto-Sprint" is toggled by double tapping `[CAPS LOCK]`.
 
-I have removed the "hold key" option from MCM as it is a little janky/broken when the same keybind is used (been trying to fix this but not sure I can).
+This addon allows you to toggle "Auto-Run" and "Auto-Sprint". This can be bound to the same key or seperate keys. This is achieved by making use of the Mod Configuration Manager(MCM), it allows you to select your toggle options for the bound key(s). I have removed the "hold key" option from MCM as it is a little janky/broken when the same key bind is used.
 
 ## Features
 
@@ -48,7 +48,6 @@ I have removed the "hold key" option from MCM as it is a little janky/broken whe
 - Ability to set a Toggle mode within the MCM screen, the options are:
   - Single tap
   - Double tap
-  - Long Press
 - Ability to set a Toggle modifier within the MCM screen, the options are:
   - None
   - Shift key
@@ -67,7 +66,6 @@ The MCM Tab for this addon is "TAR - Toggle Auto Run"
 - Toggle Mode: can be adjusted in the MCM screen, the options are:
   - Single tap
   - Double tap
-  - Long Press
 - Toggle Modifier: can be adjusted in the MCM screen, the options are:
   - None
   - Shift key
