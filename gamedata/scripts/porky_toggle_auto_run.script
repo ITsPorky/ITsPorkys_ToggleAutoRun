@@ -10,9 +10,6 @@
 
 local isRunEnabled = false
 local isSprintEnabled = false
--- local userSettingsPath = "$app_data_root$//user.ltx"
--- local userSettingsFile = getFS():update_path('$app_data_root$', '').."user.ltx"
--- local userSprintKey = DIK_keys.DIK_keys.DIK_X
 
 -------------------------------------------------------------------------------------------------------
 -- Utility Functions
@@ -25,39 +22,27 @@ function check_for_movement_input(key)
     if(isRunEnabled or isSprintEnabled) then
       isRunEnabled = false
       isSprintEnabled = false
-      -- news_manager.send_tip(db.actor, "[ " ..key.. " ]" .. " was pressed, cancelling Auto Run...")
-      printf("[ " ..key.. " ]" .. " was pressed, cancelling Auto Run...")
     end
   end
 end
 
 function toggle_auto_run()
-  -- Toggle Auto-Run
-  if(isRunEnabled) then
-    -- Stop Auto-Run
-    isRunEnabled = false
-    -- news_manager.send_tip(db.actor, "[ ITsPorkys Auto Run Addon ] - Auto-Run is disabled...")
-    printf("[ITsPorkys Auto Run Addon] - Auto-Run is disabled...")
+  if(isRunEnabled) or (isSprintEnabled) then
+    isRunEnabled = false -- Stop Auto-Run
+    isSprintEnabled = false -- This is needed to make sure it will cancel both actions if both are toggled on at the same time 
   else
-    -- Start Auto-Run
-    isRunEnabled = true
-    -- news_manager.send_tip(db.actor, "[ ITsPorkys Auto Run Addon ] - Auto-Run is enabled...")
-    printf("[ITsPorkys Auto Run Addon] - Auto-Run is enabled...")
+    isRunEnabled = true -- Start Auto-Run
+    isSprintEnabled = false -- This is needed to make sure it will cancel both actions if both are toggled on at the same time 
   end
 end
 
 function toggle_auto_sprint()
-  -- Toggle Auto-Run
-  if(isSprintEnabled) then
-    -- Stop Auto-Run
-    isSprintEnabled = false
-    -- news_manager.send_tip(db.actor, "[ ITsPorkys Auto Run Addon ] - Auto-Sprint is disabled...")
-    printf("[ITsPorkys Auto Run Addon] - Auto-Sprint is disabled...")
+  if(isSprintEnabled) or (isRunEnabled) then
+    isSprintEnabled = false -- Stop Auto-Sprint
+    isRunEnabled = false -- This is needed to make sure it will cancel both actions if both are toggled on at the same time 
   else
-    -- Start Auto-Run
-    isSprintEnabled = true
-    -- news_manager.send_tip(db.actor, "[ ITsPorkys Auto Run Addon ] - Auto-Sprint is enabled...")
-    printf("[ITsPorkys Auto Run Addon] - Auto-Sprint is enabled...")
+    isSprintEnabled = true -- Start Auto-Sprint
+    isRunEnabled = false -- This is needed to make sure it will cancel both actions if both are toggled on at the same time 
   end
 end
 
@@ -70,46 +55,55 @@ function on_key_press(key)
     if(key == porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_KEY) then  -- Using MCM Check for Single Tap or Double Tap
       -- No MCM case
       if(not porky_toggle_auto_run_mcm.MCM_KEYBINDS) then 
-        toggle_auto_sprint()
-        printf("No MCM case...")
+        toggle_auto_run()
         return
       end
       -- MCM Simple Press
-      if (porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_MODE == 0) and
-       ui_mcm.get_mod_key(porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_MODIFIER) then
-        ui_mcm.simple_press("porky_tar", key, toggle_auto_sprint())
-        printf("MCM Simple press...")
+      if (porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_MODE == 0) and ui_mcm.get_mod_key(porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_MODIFIER) then
+        ui_mcm.simple_press("porky_tar", key, toggle_auto_run())
       end
       -- MCM Double Tap
-      if (porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_MODE == 1) and
-       ui_mcm.get_mod_key(porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_MODIFIER) and
-        ui_mcm.double_tap("porky_tar", key) then
-        toggle_auto_sprint()
-        printf("MCM Double tap...")
+      if (porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_MODE == 1) and ui_mcm.get_mod_key(porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_MODIFIER) and ui_mcm.double_tap("porky_tar", key) then
+        toggle_auto_run()
         return
       end
     end
-    printf("Check for movement input...")
-    check_for_movement_input(key) -- Check for inputs on movement keys (W and S), then Disable Auto Run
+
+    if(key == porky_toggle_auto_run_mcm.TOGGLE_AUTO_SPRINT_KEY) then  -- Using MCM Check for Single Tap or Double Tap
+      -- No MCM case
+      if(not porky_toggle_auto_run_mcm.MCM_KEYBINDS) then 
+        toggle_auto_sprint()
+        return
+      end
+      -- MCM Simple Press
+      if (porky_toggle_auto_run_mcm.TOGGLE_AUTO_SPRINT_MODE == 0) and ui_mcm.get_mod_key(porky_toggle_auto_run_mcm.TOGGLE_AUTO_SPRINT_MODIFIER) then
+        ui_mcm.simple_press("porky_tar", key, toggle_auto_sprint())
+      end
+      -- MCM Double Tap
+      if (porky_toggle_auto_run_mcm.TOGGLE_AUTO_SPRINT_MODE == 1) and ui_mcm.get_mod_key(porky_toggle_auto_run_mcm.TOGGLE_AUTO_SPRINT_MODIFIER) and ui_mcm.double_tap("porky_tar", key) then
+        toggle_auto_sprint()
+        return
+      end
+    end
   end
+
+  check_for_movement_input(key) -- Check for inputs on movement keys (W and S), then Disable Auto Run
 end
 
 function on_key_hold(key)
   if porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_ENABLED then -- Check if addon is Enabled/Disabled in MCM
     -- MCM Hold Press
-    if porky_toggle_auto_run_mcm.MCM_KEYBINDS and
-     (key == porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_KEY) and
-      (porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_MODE == 2) and
-       ui_mcm.get_mod_key(porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_MODIFIER) and
-        ui_mcm.key_hold("porky_tar", key, 5) then
-        toggle_auto_sprint()
-      printf("MCM Hold press...")
+    if porky_toggle_auto_run_mcm.MCM_KEYBINDS and (key == porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_KEY) and (porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_MODE == 2) and ui_mcm.get_mod_key(porky_toggle_auto_run_mcm.TOGGLE_AUTO_RUN_MODIFIER) and ui_mcm.key_hold("porky_tar", key, 1) then
+      toggle_auto_run()
+    end	
+    if porky_toggle_auto_run_mcm.MCM_KEYBINDS and (key == porky_toggle_auto_run_mcm.TOGGLE_AUTO_SPRINT_KEY) and (porky_toggle_auto_run_mcm.TOGGLE_AUTO_SPRINT_MODE == 2) and ui_mcm.get_mod_key(porky_toggle_auto_run_mcm.TOGGLE_AUTO_SPRINT_MODIFIER) and ui_mcm.key_hold("porky_tar", key, 1) then
+      toggle_auto_sprint()
     end	
   end
 end
 
 function actor_on_update() -- Check for Auto-Run/Walk on Actor update
-  -- Walk
+  -- Run
   if isRunEnabled then
     level.hold_action(bind_to_dik(key_bindings.kFWD))
   end
@@ -117,12 +111,11 @@ function actor_on_update() -- Check for Auto-Run/Walk on Actor update
   if isSprintEnabled then
     level.hold_action(bind_to_dik(key_bindings.kFWD))
     level.hold_action(bind_to_dik(7)) -- 7 is the keybind for Sprint
-    -- level.hold_action(DIK_keys.DIK_LSHIFT)
   end
 end
 
 -------------------------------------------------------------------------------------------------------
--- Main Callbacks
+-- Register Callbacks
 -------------------------------------------------------------------------------------------------------
 
 -- Main game loop script to register callbacks

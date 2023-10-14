@@ -18,4 +18,10 @@
 	<string id="ui_mcm_porky_tar_toggleAutoRunKey_desc">
 		<text>Enter the keybind you would like to use for toggling Auto Run.</text>
 	</string>
+	<string id="ui_mcm_porky_tar_toggleAutoSprintKey">
+		<text>Keybind for TAR - Toggle Auto Sprint</text>
+	</string>
+	<string id="ui_mcm_porky_tar_toggleAutoSprintKey_desc">
+		<text>Enter the keybind you would like to use for toggling Auto Sprint.</text>
+	</string>
 </string_table>

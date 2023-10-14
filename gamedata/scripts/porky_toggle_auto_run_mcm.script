@@ -9,9 +9,14 @@
 -------------------------------------------------------------------------------------------------------
 
 TOGGLE_AUTO_RUN_ENABLED = true
+-- Variables for Run
 TOGGLE_AUTO_RUN_KEY = DIK_keys.DIK_CAPITAL
 TOGGLE_AUTO_RUN_MODE = 0
 TOGGLE_AUTO_RUN_MODIFIER = 0
+-- Variables for Sprint
+TOGGLE_AUTO_SPRINT_KEY = DIK_keys.DIK_CAPITAL
+TOGGLE_AUTO_SPRINT_MODE = 1
+TOGGLE_AUTO_SPRINT_MODIFIER = 0
 
 MCM_KEYBINDS = ui_mcm and ui_mcm.key_hold
 
@@ -28,9 +33,12 @@ function on_mcm_load()
 			{id = "toggleAutoRunEnabled", type = "check", val = 1, def = TOGGLE_AUTO_RUN_ENABLED},
 			{id = "toggleAutoRunKey", type = "key_bind", val = 2, def = TOGGLE_AUTO_RUN_KEY},
 	    {id = "toggleAutoRunKeyModifier", type = ui_mcm.kb_mod_radio, val = 2, def = TOGGLE_AUTO_RUN_MODIFIER, hint = "mcm_kb_modifier" , content= { {0,"mcm_kb_mod_none"} , {1,"mcm_kb_mod_shift"} ,{3,"mcm_kb_mod_alt"}}},
-			{id = "toggleAutoRunKeyMode", type = ui_mcm.kb_mod_radio, val = 2, def = TOGGLE_AUTO_RUN_MODE, hint = "mcm_kb_mode" , content= { {0,"mcm_kb_mode_press"} , {1,"mcm_kb_mode_dtap"} , {2,"mcm_kb_mode_hold"}}},
-			}
+			{id = "toggleAutoRunKeyMode", type = ui_mcm.kb_mod_radio, val = 2, def = TOGGLE_AUTO_RUN_MODE, hint = "mcm_kb_mode" , content= { {0,"mcm_kb_mode_press"} , {1,"mcm_kb_mode_dtap"}}},
+			{id = "toggleAutoSprintKey", type = "key_bind", val = 2, def = TOGGLE_AUTO_SPRINT_KEY},
+	    {id = "toggleAutoSprintKeyModifier", type = ui_mcm.kb_mod_radio, val = 2, def = TOGGLE_AUTO_SPRINT_MODIFIER, hint = "mcm_kb_modifier" , content= { {0,"mcm_kb_mod_none"} , {1,"mcm_kb_mod_shift"} ,{3,"mcm_kb_mod_alt"}}},
+			{id = "toggleAutoSprintKeyMode", type = ui_mcm.kb_mod_radio, val = 2, def = TOGGLE_AUTO_SPRINT_MODE, hint = "mcm_kb_mode" , content= { {0,"mcm_kb_mode_press"} , {1,"mcm_kb_mode_dtap"}}},
 		}
+	}
 	return op
 end
 
@@ -40,10 +48,15 @@ end
 
 function on_option_change(mcm)
   if mcm then
-    TOGGLE_AUTO_RUN_ENABLED = ui_mcm.get("porky_tar/toggleAutoRunEnabled")
+		TOGGLE_AUTO_RUN_ENABLED = ui_mcm.get("porky_tar/toggleAutoRunEnabled")
+		-- Run
     TOGGLE_AUTO_RUN_KEY = ui_mcm.get("porky_tar/toggleAutoRunKey") or TOGGLE_AUTO_RUN_KEY
 		TOGGLE_AUTO_RUN_MODE = ui_mcm.get("porky_tar/toggleAutoRunKeyMode")
 		TOGGLE_AUTO_RUN_MODIFIER = ui_mcm.get("porky_tar/toggleAutoRunKeyModifier")
+		-- Sprint
+    TOGGLE_AUTO_SPRINT_KEY = ui_mcm.get("porky_tar/toggleAutoSprintKey") or TOGGLE_AUTO_SPRINT_KEY
+		TOGGLE_AUTO_SPRINT_MODE = ui_mcm.get("porky_tar/toggleAutoSprintKeyMode")
+		TOGGLE_AUTO_SPRINT_MODIFIER = ui_mcm.get("porky_tar/toggleAutoSprintKeyModifier")
   end
 end
 
